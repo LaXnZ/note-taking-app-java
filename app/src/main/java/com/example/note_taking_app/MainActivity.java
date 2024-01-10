@@ -2,6 +2,7 @@ package com.example.note_taking_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.appcompat.app.ActionBar;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -36,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().hide();
+        ActionBar actionBar = getSupportActionBar(); // Get the ActionBar
+
+        if (actionBar != null) {
+            actionBar.hide(); // Hide the ActionBar if it's not null
+        }
 
         mloginemail=findViewById(R.id.loginemail);
         mloginpassword=findViewById(R.id.loginpassword);

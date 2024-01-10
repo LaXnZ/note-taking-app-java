@@ -1,7 +1,7 @@
 package com.example.note_taking_app;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +21,11 @@ public class signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        getSupportActionBar().hide();
+        ActionBar actionBar = getSupportActionBar(); // Get the ActionBar
+
+        if (actionBar != null) {
+            actionBar.hide(); // Hide the ActionBar if it's not null
+        }
 
         msignupemail=findViewById(R.id.signupemail);
         msignuppassword=findViewById(R.id.signuppassword);
