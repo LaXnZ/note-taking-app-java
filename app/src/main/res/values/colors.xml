@@ -2,4 +2,17 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="random_color_1">#7F5A83</color>
+    <color name="random_color_2">#4FA44F</color>
+    <color name="random_color_3">#D05A6E</color>
+    <color name="random_color_4">#578BB8</color>
+    <color name="random_color_5">#E1A95F</color>
+    <color name="random_color_6">#9F7E69</color>
+    <color name="random_color_7">#65B87E</color>
+    <color name="random_color_8">#E7C27E</color>
+    <color name="random_color_9">#8C88C3</color>
+    <color name="random_color_10">#A7D0CD</color>
+
+
 </resources>

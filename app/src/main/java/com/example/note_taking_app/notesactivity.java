@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 //import android.widget.Toolbar;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -24,6 +26,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class notesactivity extends AppCompatActivity {
     FloatingActionButton mcreatenotesfab;
@@ -71,8 +77,22 @@ public class notesactivity extends AppCompatActivity {
         noteAdapter=new FirestoreRecyclerAdapter<firebasemodel, NoteViewHolder>(allusernotes) {
             @Override
             protected void onBindViewHolder(@NonNull NoteViewHolder holder, int position, @NonNull firebasemodel model) {
+
+                int colorcode=getRandomColor();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    holder.mnote.setBackgroundColor(holder.itemView.getResources().getColor(colorcode,null));
+                }
+
                 holder.notetitle.setText(model.getTitle());
                 holder.notecontent.setText(model.getContent());
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //open note details
+                        Toast.makeText(getApplicationContext(),"This is clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @NonNull
@@ -137,5 +157,25 @@ public class notesactivity extends AppCompatActivity {
             noteAdapter.startListening();
         }
     }
+
+    private int getRandomColor() {
+        List<Integer> colorCode = new ArrayList<>();
+
+        colorCode.add(R.color.random_color_1);
+        colorCode.add(R.color.random_color_2);
+        colorCode.add(R.color.random_color_3);
+        colorCode.add(R.color.random_color_4);
+        colorCode.add(R.color.random_color_5);
+        colorCode.add(R.color.random_color_6);
+        colorCode.add(R.color.random_color_7);
+        colorCode.add(R.color.random_color_8);
+        colorCode.add(R.color.random_color_9);
+        colorCode.add(R.color.random_color_10);
+
+        Random random=new Random();
+        int number=random.nextInt(colorCode.size());
+        return colorCode.get(number);
+    }
+
 
 }
