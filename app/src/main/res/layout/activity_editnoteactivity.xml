@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".createnote">
-    
+    tools:context=".editnoteactivity">
+
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/toolbarofcreatenote"
+        android:id="@+id/toolbarofeditnote"
         android:background="@color/white">
 
         <EditText
@@ -20,7 +20,7 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:hint="Enter your note title here"
-            android:id="@+id/createtitleofnote"/>
+            android:id="@+id/edittitleofnote"/>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -31,15 +31,14 @@
         android:background="@color/cardview_light_background"
         android:gravity="top|left"
         android:textColor="@color/black"
-        android:hint="Enter your note content here"
-        android:layout_below="@id/toolbarofcreatenote"
+        android:layout_below="@id/toolbarofeditnote"
         android:padding="15dp"
-        android:id="@+id/createcontentofnote">
+        android:id="@+id/editcontentofnote">
 
     </EditText>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/savenote"
+        android:id="@+id/saveeditnote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -47,7 +46,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:background="#A1F4FB"
-        android:src="@drawable/save"
+        android:src="@drawable/update"
         android:layout_gravity="bottom|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

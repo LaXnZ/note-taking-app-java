@@ -9,12 +9,15 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 //import android.widget.Toolbar;
@@ -78,6 +81,7 @@ public class notesactivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull NoteViewHolder holder, int position, @NonNull firebasemodel model) {
 
+                ImageView popupbutton=holder.itemView.findViewById(R.id.menupopbutton);
                 int colorcode=getRandomColor();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     holder.mnote.setBackgroundColor(holder.itemView.getResources().getColor(colorcode,null));
@@ -90,7 +94,38 @@ public class notesactivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         //open note details
-                        Toast.makeText(getApplicationContext(),"This is clicked", Toast.LENGTH_SHORT).show();
+
+                        Intent intent=new Intent(view.getContext(),notedetails.class);
+                        view.getContext().startActivity(intent);
+                        // Toast.makeText(getApplicationContext(),"This is clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                popupbutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        PopupMenu popupMenu = new PopupMenu(view.getContext(),view);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            popupMenu.setGravity(Gravity.END);
+                            popupMenu.getMenu().add("Edit").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                                @Override
+                                public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
+
+                                    Intent intent=new Intent(view.getContext(),editnoteactivity.class);
+                                    view.getContext().startActivity(intent);
+                                    return false;
+                                }
+                            });
+                            popupMenu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                                @Override
+                                public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
+                                    Toast.makeText(view.getContext(),"This note is deleted",Toast.LENGTH_SHORT).show();
+                                    return false;
+                                }
+                            });
+
+                            popupMenu.show();
+                        }
                     }
                 });
             }
