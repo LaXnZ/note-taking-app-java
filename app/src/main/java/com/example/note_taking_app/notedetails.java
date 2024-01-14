@@ -27,13 +27,10 @@ public class notedetails extends AppCompatActivity {
         mcontentofnotedetail=findViewById(R.id.contentofnotedetail);
         mgotoeditnote=findViewById(R.id.gotoeditnote);
 
-        Toolbar myToolbar = findViewById(R.id.my_toolbar_notedetails);
-        setSupportActionBar(myToolbar);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("All Notes");
-        }
+        Toolbar toolbar = findViewById(R.id.my_toolbar_notedetails);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
 
         Intent data=getIntent();
 
