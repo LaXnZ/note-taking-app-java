@@ -8,10 +8,11 @@
 
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar_notedetails"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/toolbarofnotedetail"
-        android:background="@color/white">
+        android:background="?attr/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,7 +26,7 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="15sp"
@@ -33,11 +34,11 @@
         android:gravity="top|left"
         android:textColor="@color/black"
         android:hint="Enter your note content here"
-        android:layout_below="@id/toolbarofnotedetail"
+        android:layout_below="@id/my_toolbar_notedetails"
         android:padding="15dp"
         android:id="@+id/contentofnotedetail">
 
-    </EditText>
+    </TextView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/gotoeditnote"
@@ -52,7 +53,7 @@
         android:layout_gravity="bottom|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="36dp">
+        app:maxImageSize="32dp">
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 
