@@ -23,14 +23,14 @@ public class notedetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notedetails);
 
-        mtitleofnotedetail=findViewById(R.id.titleofnotedetail);
+        //mtitleofnotedetail=findViewById(R.id.titleofnotedetail);
         mcontentofnotedetail=findViewById(R.id.contentofnotedetail);
         mgotoeditnote=findViewById(R.id.gotoeditnote);
 
         Toolbar toolbar = findViewById(R.id.my_toolbar_notedetails);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
+
 
         Intent data=getIntent();
 
@@ -41,10 +41,14 @@ public class notedetails extends AppCompatActivity {
                 intent.putExtra("title",data.getStringExtra("title"));
                 intent.putExtra("content",data.getStringExtra("content"));
                 intent.putExtra("noteId",data.getStringExtra("noteId"));
+
+                view.getContext().startActivity(intent);
             }
         });
         mcontentofnotedetail.setText(data.getStringExtra("content"));
-        mtitleofnotedetail.setText(data.getStringExtra("title"));
+        //mtitleofnotedetail.setText(data.getStringExtra("title"));
+
+        getSupportActionBar().setTitle(data.getStringExtra("title"));
     }
 
     @Override
