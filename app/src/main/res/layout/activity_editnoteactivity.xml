@@ -27,7 +27,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:background="@color/cardview_light_background"
         android:gravity="top|left"
         android:textColor="@color/black"
@@ -45,7 +45,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="#A1F4FB"
+        android:backgroundTint="#97bdcb"
         android:src="@drawable/save"
         android:layout_gravity="bottom|end"
         app:layout_constraintBottom_toBottomOf="parent"

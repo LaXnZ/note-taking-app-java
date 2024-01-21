@@ -5,16 +5,17 @@
 
     <color name="text_input_dark">#3C4346</color>
 
-    <color name="random_color_1">#7F5A83</color>
-    <color name="random_color_2">#4FA44F</color>
-    <color name="random_color_3">#D05A6E</color>
-    <color name="random_color_4">#578BB8</color>
-    <color name="random_color_5">#E1A95F</color>
-    <color name="random_color_6">#9F7E69</color>
-    <color name="random_color_7">#65B87E</color>
-    <color name="random_color_8">#E7C27E</color>
-    <color name="random_color_9">#8C88C3</color>
-    <color name="random_color_10">#A7D0CD</color>
+    <color name="random_color_1">#a5cde6</color>
+    <color name="random_color_2">#97bdcb</color>
+    <color name="random_color_3">#97bdcb</color>
+    <color name="random_color_4">#97bdcb</color>
+    <color name="random_color_5">#97bdcb</color>
+
+    <color name="random_color_6">#7698a3</color>
+    <color name="random_color_7">#495d65</color>
+    <color name="random_color_8">#6c95a3</color>
+    <color name="random_color_9">#5f7a83</color>
+    <color name="random_color_10">#5f8895</color>
 
     <!-- Light Theme -->
     <style name="TextAppearance.LightTheme">
@@ -28,5 +29,14 @@
 
     <style name="TextAppearance">TextAppearance</style>
 
+    <style name="RoundedShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="ToolbarText" parent="@android:style/TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">22sp</item>
+    </style>
 
 </resources>

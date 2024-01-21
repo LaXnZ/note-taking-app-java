@@ -4,11 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
+import android.content.ComponentCallbacks;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,6 +52,13 @@ public class editnoteactivity extends AppCompatActivity {
 
         firebaseFirestore=FirebaseFirestore.getInstance();
         firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+
+
+        // Set initial background image based on the current theme
+        updateBackgroundBasedOnTheme(getResources().getConfiguration());
+
+        // Register a listener to track theme changes
+        getApplication().registerComponentCallbacks(new editnoteactivity.ThemeChangeListener());
 
         Toolbar toolbar = findViewById(R.id.toolbarofeditnote);
         setSupportActionBar(toolbar);
@@ -100,4 +113,37 @@ public class editnoteactivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("ResourceAsColor")
+    private void updateBackgroundBasedOnTheme(Configuration configuration) {
+        int nightMode = configuration.uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        EditText edittitleofnote = findViewById(R.id.edittitleofnote);
+        EditText editcontentofnote = findViewById(R.id.editcontentofnote);
+        Toolbar toolbarofeditnote = findViewById(R.id.toolbarofeditnote);
+
+        if (nightMode == Configuration.UI_MODE_NIGHT_YES) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                // Apply dark theme styles for EditText and Toolbar
+                edittitleofnote.setTextAppearance(R.style.TextAppearance_DarkTheme);
+                editcontentofnote.setTextAppearance(R.style.TextAppearance_DarkTheme);
+                editcontentofnote.setBackgroundColor(Color.parseColor("#212121")); // Set dark background color
+                toolbarofeditnote.setBackgroundColor(Color.parseColor("#212121")); // Set dark background color
+            }
+        } else {
+            // Apply light theme styles if needed
+        }
+    }
+
+
+    private class ThemeChangeListener implements ComponentCallbacks {
+
+        @Override
+        public void onConfigurationChanged(@NonNull Configuration newConfig) {
+            updateBackgroundBasedOnTheme(newConfig);
+        }
+
+        @Override
+        public void onLowMemory() {
+            // Handle low memory situations if necessary
+        }
+    }
 }

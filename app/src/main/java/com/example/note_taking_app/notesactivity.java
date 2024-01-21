@@ -6,7 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import android.annotation.SuppressLint;
+import android.content.ComponentCallbacks;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -27,6 +33,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -59,6 +66,14 @@ public class notesactivity extends AppCompatActivity {
 
         firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
         firebaseFirestore=FirebaseFirestore.getInstance();
+
+
+        // Set initial background image based on the current theme
+        updateBackgroundBasedOnTheme(getResources().getConfiguration());
+
+        // Register a listener to track theme changes
+        getApplication().registerComponentCallbacks(new notesactivity.ThemeChangeListener());
+
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar_notesactivity);
         setSupportActionBar(myToolbar);
@@ -225,20 +240,39 @@ public class notesactivity extends AppCompatActivity {
         List<Integer> colorCode = new ArrayList<>();
 
         colorCode.add(R.color.random_color_1);
-        colorCode.add(R.color.random_color_2);
-        colorCode.add(R.color.random_color_3);
-        colorCode.add(R.color.random_color_4);
-        colorCode.add(R.color.random_color_5);
-        colorCode.add(R.color.random_color_6);
-        colorCode.add(R.color.random_color_7);
-        colorCode.add(R.color.random_color_8);
-        colorCode.add(R.color.random_color_9);
-        colorCode.add(R.color.random_color_10);
+
 
         Random random=new Random();
         int number=random.nextInt(colorCode.size());
         return colorCode.get(number);
     }
 
+    @SuppressLint("ResourceAsColor")
+    private void updateBackgroundBasedOnTheme(Configuration configuration) {
+        int nightMode = configuration.uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        Toolbar mallnotestoolbar = findViewById(R.id.my_toolbar_notesactivity);
+        FloatingActionButton mcreatenotebtn = findViewById(R.id.createnotefab);
 
+        if (nightMode == Configuration.UI_MODE_NIGHT_YES) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                mallnotestoolbar.setBackgroundColor(Color.parseColor("#495d65"));
+                mcreatenotebtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#495d65")));
+            }
+        } else {
+
+        }
+    }
+
+    private class ThemeChangeListener implements ComponentCallbacks {
+
+        @Override
+        public void onConfigurationChanged(@NonNull Configuration newConfig) {
+            updateBackgroundBasedOnTheme(newConfig);
+        }
+
+        @Override
+        public void onLowMemory() {
+            // Handle low memory situations if necessary
+        }
+    }
 }

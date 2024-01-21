@@ -11,8 +11,10 @@
         android:id="@+id/my_toolbar_notesactivity"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="#97bdcb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextAppearance="@style/ToolbarText"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/createnotefab"
@@ -23,8 +25,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/create"
-        android:background="#A1F4FB"
-        app:maxImageSize="40dp"/>
+        app:maxImageSize="40dp"
+        android:backgroundTint="#97bdcb"
+        app:shapeAppearanceOverlay="@style/RoundedShape"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

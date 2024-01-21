@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".notedetails">
 
     <androidx.appcompat.widget.Toolbar
@@ -13,23 +13,24 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/titleofnotedetail"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:paddingTop="12dp"-->
-<!--        android:textSize="25sp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:layout_marginLeft="15dp"/>-->
+    <!--
+    <TextView
+        android:id="@+id/titleofnotedetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginLeft="15dp"/>
+    -->
 
     <TextView
         android:id="@+id/contentofnotedetail"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_below="@id/my_toolbar_notedetails"
         android:textSize="20sp"
-        android:background="@color/cardview_light_background"
         android:gravity="top|left"
         android:textColor="@color/black"
         android:hint="Enter your note content here"
@@ -39,10 +40,12 @@
         android:id="@+id/gotoeditnote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="#A1F4FB"
+        android:backgroundTint="#97bdcb"
         android:src="@drawable/edit"
-        app:maxImageSize="32dp" />
-</LinearLayout>
+        app:maxImageSize="32dp"/>
+
+</RelativeLayout>
