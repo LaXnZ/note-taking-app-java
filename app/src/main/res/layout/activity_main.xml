@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
+
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -15,8 +15,24 @@
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
         android:id="@+id/progressbarofmainactivity"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="15dp">
     </ProgressBar>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/background_image_main"
+        android:src="@drawable/background_image_light"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="390dp"
+        android:layout_height="100dp"
+        android:id="@+id/logo_main"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"/>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -30,27 +46,22 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_above="@+id/centerline"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="5dp"
+        android:layout_above="@+id/email"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome Back!"
-            android:textSize="42sp"
-            android:textColor="@color/material_dynamic_primary20"
+            android:id="@+id/logintitle"
+            android:text="Login"
+            android:shadowColor="@color/black"
+            android:textSize="50sp"
+            style="@style/TextAppearance.LightTheme"
             android:textStyle="bold">
         </TextView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Welcome Back !"
-            android:textSize="23sp"
-            android:textColor="#FF8596"
-            android:textStyle="bold">
-        </TextView>
+
 
     </LinearLayout>
 
@@ -59,6 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/centerline"
         android:layout_marginBottom="10dp"
+        app:boxBackgroundColor="#f0f8fb"
         android:id="@+id/email"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp">
@@ -79,6 +91,7 @@
         android:layout_below="@+id/centerline"
         android:layout_marginTop="10dp"
         android:id="@+id/password"
+        app:boxBackgroundColor="#f0f8fb"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
         app:passwordToggleEnabled="true">
@@ -122,9 +135,9 @@
         android:textStyle="bold"
         android:id="@+id/gotoforgotpassword"
         android:layout_marginRight="20dp"
-        android:textColor="@color/black"
         android:layout_below="@+id/login"
         android:layout_marginTop="10dp"
+        style="@style/TextAppearance.LightTheme"
         android:textAlignment="center">
     </TextView>
 
@@ -136,19 +149,18 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/button_design"
         android:id="@+id/gotosignup">
 
         <TextView
+            android:id="@+id/donthaveaccounttext"
+            style="@style/TextAppearance.LightTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_marginStart="8dp"
-            android:textSize="16sp"
-            android:text="Don't Have an Accont ? Sign Up!"
             android:layout_centerInParent="true"
-            android:textColor="@color/white">
-        </TextView>
+            android:layout_marginStart="8dp"
+            android:text="Don't Have an Account ? Sign Up!"
+            android:textSize="16sp"
+            android:textStyle="bold"></TextView>
 
     </RelativeLayout>
 

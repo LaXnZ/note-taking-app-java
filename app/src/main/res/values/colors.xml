@@ -3,6 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="text_input_dark">#3C4346</color>
+
     <color name="random_color_1">#7F5A83</color>
     <color name="random_color_2">#4FA44F</color>
     <color name="random_color_3">#D05A6E</color>
@@ -13,6 +15,18 @@
     <color name="random_color_8">#E7C27E</color>
     <color name="random_color_9">#8C88C3</color>
     <color name="random_color_10">#A7D0CD</color>
+
+    <!-- Light Theme -->
+    <style name="TextAppearance.LightTheme">
+        <item name="android:textColor">@color/material_dynamic_primary20</item>
+    </style>
+
+    <!-- Dark Theme -->
+    <style name="TextAppearance.DarkTheme">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance">TextAppearance</style>
 
 
 </resources>
