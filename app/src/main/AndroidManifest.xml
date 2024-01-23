@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Notetakingapp"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ocr" />
         <activity
             android:name=".scanner"
             android:exported="false" />
