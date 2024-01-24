@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="#97bdcb"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavView"
         tools:layout_editor_absoluteX="50dp">
 
         <ImageView
@@ -43,7 +43,6 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="48dp"
-            android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/getimage"
             app:layout_constraintHorizontal_bias="0.509"
@@ -57,7 +56,6 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="48dp"
-            android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/getimage"
@@ -69,7 +67,6 @@
             android:id="@+id/getimage"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -83,7 +80,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="Copy"
-            android:textColor="#FFFFFF"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@+id/copy"
             app:layout_constraintStart_toStartOf="@+id/copy"
@@ -95,10 +91,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="Clear"
-            android:textColor="#FFFFFF"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@+id/clear"
             app:layout_constraintStart_toStartOf="@+id/clear"
             app:layout_constraintTop_toBottomOf="@+id/clear" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:itemPaddingBottom="10dp"
+        app:menu="@menu/bottom_nav_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

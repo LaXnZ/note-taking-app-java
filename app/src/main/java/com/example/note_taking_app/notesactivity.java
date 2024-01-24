@@ -4,6 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -21,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -32,6 +37,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +46,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.sql.RowId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -48,6 +55,8 @@ public class notesactivity extends AppCompatActivity {
     FloatingActionButton mcreatenotesfab;
     private FirebaseAuth firebaseAuth;
 
+    private BottomNavigationView bottomNavigationView;
+    private FrameLayout frameLayout;
     RecyclerView mrecyclerview;
     StaggeredGridLayoutManager staggeredGridLayoutManager;
 
@@ -66,6 +75,37 @@ public class notesactivity extends AppCompatActivity {
 
         firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
         firebaseFirestore=FirebaseFirestore.getInstance();
+
+        bottomNavigationView = findViewById(R.id.bottomNavView);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int itemId = item.getItemId();
+                
+                if(itemId == R.id.navHome){
+                    //
+
+                } else if (itemId == R.id.navSearch) {
+                    //
+                    
+                } else if (itemId == R.id.navProfile) {
+                    //
+
+                } else if (itemId == R.id.navScanner) {
+                    startActivity(new Intent(notesactivity.this, scanner.class));
+
+                } else { // nav NewNote
+                    startActivity(new Intent(notesactivity.this, createnote.class));
+
+                }
+
+                bottomNavigationView.getMenu().findItem(R.id.navHome).setChecked(true);
+                return true;
+            }
+        });
+
 
 
         // Set initial background image based on the current theme
@@ -100,9 +140,9 @@ public class notesactivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull NoteViewHolder holder, int position, @NonNull firebasemodel model) {
 
                 ImageView popupbutton=holder.itemView.findViewById(R.id.menupopbutton);
-                int colorcode=getRandomColor();
+                int colorcode = getRandomColor();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    holder.mnote.setBackgroundColor(holder.itemView.getResources().getColor(colorcode,null));
+                    holder.mnote.setBackgroundColor(holder.itemView.getResources().getColor(colorcode, null));
                 }
 
                 holder.notetitle.setText(model.getTitle());
@@ -121,7 +161,6 @@ public class notesactivity extends AppCompatActivity {
                         intent.putExtra("noteId", docId);
                         view.getContext().startActivity(intent);
 
-                        // Toast.makeText(getApplicationContext(),"This is clicked", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -252,14 +291,18 @@ public class notesactivity extends AppCompatActivity {
         int nightMode = configuration.uiMode & Configuration.UI_MODE_NIGHT_MASK;
         Toolbar mallnotestoolbar = findViewById(R.id.my_toolbar_notesactivity);
         FloatingActionButton mcreatenotebtn = findViewById(R.id.createnotefab);
+        CardView mnotecard = findViewById(R.id.notecard);
 
         if (nightMode == Configuration.UI_MODE_NIGHT_YES) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                mallnotestoolbar.setBackgroundColor(Color.parseColor("#495d65"));
-                mcreatenotebtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#495d65")));
+                mallnotestoolbar.setBackgroundColor(Color.parseColor("#495d66"));
+                mcreatenotebtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#495d64")));
+//                mnotecard.setCardBackgroundColor(Color.parseColor("#161616"));
             }
         } else {
-
+            mallnotestoolbar.setBackgroundColor(Color.parseColor("#97bdcb"));
+            mcreatenotebtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#97bdcb")));
+//            mnotecard.setCardBackgroundColor(Color.parseColor("#161616"));
         }
     }
 

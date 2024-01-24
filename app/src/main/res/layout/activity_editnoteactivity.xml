@@ -7,50 +7,54 @@
     tools:context=".editnoteactivity">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarofeditnote"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/toolbarofeditnote"
         android:background="@color/white">
 
         <EditText
+            android:id="@+id/edittitleofnote"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:paddingTop="12dp"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:hint="Enter your note title here"
-            android:id="@+id/edittitleofnote"/>
+            android:hint="Enter your note title here" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <EditText
+        android:id="@+id/editcontentofnote"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="20sp"
-        android:background="@color/cardview_light_background"
-        android:gravity="top|left"
-        android:textColor="@color/black"
         android:layout_below="@id/toolbarofeditnote"
         android:padding="15dp"
-        android:id="@+id/editcontentofnote">
-
-    </EditText>
+        android:background="@color/cardview_light_background"
+        android:gravity="top|left"
+        android:textSize="20sp"
+        android:textColor="@color/black" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/saveeditnote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#97bdcb"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="77dp"
         android:src="@drawable/save"
         android:layout_gravity="bottom|end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="36dp">
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        app:maxImageSize="36dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        app:itemPaddingBottom="10dp"
+        app:menu="@menu/bottom_nav_bar"
+        android:background="#f3edf7"/>
 
 </RelativeLayout>

@@ -7,8 +7,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.annotation.SuppressLint;
 import android.content.ComponentCallbacks;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,6 +37,7 @@ public class editnoteactivity extends AppCompatActivity {
     Intent data;
     EditText medittitleofnote,meditcontentofnote;
     FloatingActionButton msaveeditnote;
+    private BottomNavigationView bottomNavigationView;
 
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
@@ -64,6 +68,36 @@ public class editnoteactivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
+
+        bottomNavigationView = findViewById(R.id.bottomNavView);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int itemId = item.getItemId();
+
+                if(itemId == R.id.navHome){
+                    startActivity(new Intent(editnoteactivity.this, MainActivity.class));
+
+                } else if (itemId == R.id.navSearch) {
+                    //
+
+                } else if (itemId == R.id.navProfile) {
+                    //
+
+                } else if (itemId == R.id.navScanner) {
+                    startActivity(new Intent(editnoteactivity.this, scanner.class));
+
+                } else { // nav NewNote
+                    startActivity(new Intent(editnoteactivity.this, createnote.class));
+
+                }
+
+                return true;
+            }
+        });
+        bottomNavigationView.getMenu().findItem(R.id.navNewNote).setChecked(true);
 
         msaveeditnote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +153,8 @@ public class editnoteactivity extends AppCompatActivity {
         EditText edittitleofnote = findViewById(R.id.edittitleofnote);
         EditText editcontentofnote = findViewById(R.id.editcontentofnote);
         Toolbar toolbarofeditnote = findViewById(R.id.toolbarofeditnote);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavView);
+        FloatingActionButton msaveeditnote = findViewById(R.id.saveeditnote);
 
         if (nightMode == Configuration.UI_MODE_NIGHT_YES) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -127,9 +163,16 @@ public class editnoteactivity extends AppCompatActivity {
                 editcontentofnote.setTextAppearance(R.style.TextAppearance_DarkTheme);
                 editcontentofnote.setBackgroundColor(Color.parseColor("#212121")); // Set dark background color
                 toolbarofeditnote.setBackgroundColor(Color.parseColor("#212121")); // Set dark background color
+                bottomNavigationView.setBackgroundColor(Color.parseColor("#201f25"));
+                bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.parseColor("#c9c4cf")));
+                bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.parseColor("#e9dff8")));
+                msaveeditnote.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#495d64")));
+                msaveeditnote.getDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
             }
         } else {
-            // Apply light theme styles if needed
+            bottomNavigationView.setBackgroundColor(Color.parseColor("#f3edf7"));
+            bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.parseColor("#48454e")));
+            msaveeditnote.getDrawable().setColorFilter(null);
         }
     }
 

@@ -3,22 +3,34 @@ package com.example.note_taking_app;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ComponentCallbacks;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
@@ -33,6 +45,7 @@ public class scanner extends AppCompatActivity {
     EditText mrecgtext;
     Uri mimageuri;
     TextRecognizer textRecognizer;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +56,14 @@ public class scanner extends AppCompatActivity {
         mgetimage = findViewById(R.id.getimage);
         mcopy = findViewById(R.id.copy);
         mrecgtext = findViewById(R.id.recgText);
+
+        bottomNavigationView = findViewById(R.id.bottomNavView);
+
+        // Set initial background image based on the current theme
+        updateBackgroundBasedOnTheme(getResources().getConfiguration());
+
+        // Register a listener to track theme changes
+        getApplication().registerComponentCallbacks(new scanner.ThemeChangeListener());
 
         textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
         mgetimage.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +111,35 @@ public class scanner extends AppCompatActivity {
 
             }
         });
+        bottomNavigationView.getMenu().findItem(R.id.navScanner).setChecked(true);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int itemId = item.getItemId();
+
+                if(itemId == R.id.navHome){
+                    startActivity(new Intent(scanner.this, MainActivity.class));
+
+                } else if (itemId == R.id.navSearch) {
+                    //
+
+                } else if (itemId == R.id.navProfile) {
+                    //
+
+                } else if (itemId == R.id.navScanner) {
+                    //
+
+                } else { // nav NewNote
+                    startActivity(new Intent(scanner.this, createnote.class));
+
+                }
+
+                return true;
+            }
+        });
+
+
     }
 
     @Override
@@ -131,4 +181,56 @@ public class scanner extends AppCompatActivity {
             }
         }
     }
+
+
+    @SuppressLint("ResourceAsColor")
+    private void updateBackgroundBasedOnTheme(Configuration configuration) {
+        int nightMode = configuration.uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        ConstraintLayout mconstraintLayout = findViewById(R.id.constraintLayout);
+        ImageView clearImageView = findViewById(R.id.clear);
+        ImageView copyImageView = findViewById(R.id.copy);
+        ImageView getImageImageView = findViewById(R.id.getimage);
+        TextView copyTextView = findViewById(R.id.textView);
+        TextView clearTextView = findViewById(R.id.textView2);
+
+        if (nightMode == Configuration.UI_MODE_NIGHT_YES) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                mconstraintLayout.setBackgroundColor(Color.parseColor("#201f25"));
+
+                // Change ImageView tints to white
+                clearImageView.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+                copyImageView.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+                getImageImageView.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+
+                // Change TextView text colors to white
+                copyTextView.setTextColor(Color.WHITE);
+                clearTextView.setTextColor(Color.WHITE);
+            }
+        } else {
+            mconstraintLayout.setBackgroundColor(Color.parseColor("#f3edf7"));
+
+            // Remove ImageView tints (reset to default)
+            clearImageView.setColorFilter(null);
+            copyImageView.setColorFilter(null);
+            getImageImageView.setColorFilter(null);
+
+            // Reset TextView text colors to default
+            copyTextView.setTextColor(Color.parseColor("#000000"));
+            clearTextView.setTextColor(Color.parseColor("#000000"));
+        }
+    }
+
+    private class ThemeChangeListener implements ComponentCallbacks {
+
+        @Override
+        public void onConfigurationChanged(@NonNull Configuration newConfig) {
+            updateBackgroundBasedOnTheme(newConfig);
+        }
+
+        @Override
+        public void onLowMemory() {
+            // Handle low memory situations if necessary
+        }
+    }
+
 }

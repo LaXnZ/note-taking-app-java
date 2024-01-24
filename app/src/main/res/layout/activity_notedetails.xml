@@ -43,9 +43,19 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#97bdcb"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="77dp"
         android:src="@drawable/edit"
         app:maxImageSize="32dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        app:itemPaddingBottom="10dp"
+        app:menu="@menu/bottom_nav_bar"
+        android:background="#f3edf7"/>
+
 
 </RelativeLayout>
