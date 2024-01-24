@@ -192,6 +192,7 @@ public class scanner extends AppCompatActivity {
         ImageView getImageImageView = findViewById(R.id.getimage);
         TextView copyTextView = findViewById(R.id.textView);
         TextView clearTextView = findViewById(R.id.textView2);
+        ImageView mlogoImageScanner = findViewById(R.id.logoImageScanner);
 
         if (nightMode == Configuration.UI_MODE_NIGHT_YES) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -205,6 +206,8 @@ public class scanner extends AppCompatActivity {
                 // Change TextView text colors to white
                 copyTextView.setTextColor(Color.WHITE);
                 clearTextView.setTextColor(Color.WHITE);
+
+                mlogoImageScanner.setImageResource(R.drawable.logo_dark);
             }
         } else {
             mconstraintLayout.setBackgroundColor(Color.parseColor("#f3edf7"));
@@ -217,6 +220,8 @@ public class scanner extends AppCompatActivity {
             // Reset TextView text colors to default
             copyTextView.setTextColor(Color.parseColor("#000000"));
             clearTextView.setTextColor(Color.parseColor("#000000"));
+
+            mlogoImageScanner.setImageResource(R.drawable.logo_light);
         }
     }
 

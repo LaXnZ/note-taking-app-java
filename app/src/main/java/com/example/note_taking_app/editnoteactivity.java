@@ -16,6 +16,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -155,6 +157,8 @@ public class editnoteactivity extends AppCompatActivity {
         Toolbar toolbarofeditnote = findViewById(R.id.toolbarofeditnote);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavView);
         FloatingActionButton msaveeditnote = findViewById(R.id.saveeditnote);
+        ImageView mlogoImageEditNote = findViewById(R.id.logoImageEditNote);
+        RelativeLayout mrelativelayoutofnotedit = findViewById(R.id.relativelayoutofnotedit);
 
         if (nightMode == Configuration.UI_MODE_NIGHT_YES) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -168,11 +172,16 @@ public class editnoteactivity extends AppCompatActivity {
                 bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.parseColor("#e9dff8")));
                 msaveeditnote.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#495d64")));
                 msaveeditnote.getDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+                mlogoImageEditNote.setImageResource(R.drawable.logo_dark);
+                mrelativelayoutofnotedit.setBackgroundColor(Color.parseColor("#201f25"));
             }
         } else {
             bottomNavigationView.setBackgroundColor(Color.parseColor("#f3edf7"));
             bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.parseColor("#48454e")));
             msaveeditnote.getDrawable().setColorFilter(null);
+            mlogoImageEditNote.setImageResource(R.drawable.logo_light);
+            mlogoImageEditNote.setBackgroundColor(Color.parseColor("#f3edf7"));
+            mrelativelayoutofnotedit.setBackgroundColor(Color.parseColor("#f3edf7"));
         }
     }
 

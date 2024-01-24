@@ -4,11 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/relativelayoutofnotedit"
     tools:context=".editnoteactivity">
+
+    <ImageView
+        android:id="@+id/logoImageEditNote"
+        android:layout_width="370dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo_dark"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#201f25" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarofeditnote"
         android:layout_width="match_parent"
+        android:layout_below="@+id/logoImageEditNote"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white">
 
@@ -45,6 +58,7 @@
         android:layout_marginRight="17dp"
         android:layout_marginBottom="77dp"
         android:src="@drawable/save"
+        app:backgroundTint="#95bfc7"
         android:layout_gravity="bottom|end"
         app:maxImageSize="36dp"/>
 

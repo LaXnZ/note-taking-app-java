@@ -291,18 +291,18 @@ public class notesactivity extends AppCompatActivity {
         int nightMode = configuration.uiMode & Configuration.UI_MODE_NIGHT_MASK;
         Toolbar mallnotestoolbar = findViewById(R.id.my_toolbar_notesactivity);
         FloatingActionButton mcreatenotebtn = findViewById(R.id.createnotefab);
-        CardView mnotecard = findViewById(R.id.notecard);
+        ImageView mlogoImageView = findViewById(R.id.logoImageView);
 
         if (nightMode == Configuration.UI_MODE_NIGHT_YES) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                mallnotestoolbar.setBackgroundColor(Color.parseColor("#495d66"));
+                mallnotestoolbar.setBackgroundColor(Color.parseColor("#201f25"));
                 mcreatenotebtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#495d64")));
-//                mnotecard.setCardBackgroundColor(Color.parseColor("#161616"));
+                mlogoImageView.setImageResource(R.drawable.logo_dark);
             }
         } else {
-            mallnotestoolbar.setBackgroundColor(Color.parseColor("#97bdcb"));
+            mallnotestoolbar.setBackgroundColor(Color.parseColor("#f3edf7"));
             mcreatenotebtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#97bdcb")));
-//            mnotecard.setCardBackgroundColor(Color.parseColor("#161616"));
+            mlogoImageView.setImageResource(R.drawable.logo_light);
         }
     }
 

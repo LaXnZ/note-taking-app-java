@@ -5,13 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/relativelayoutofnotedetails"
     tools:context=".notedetails">
+
+    <ImageView
+        android:id="@+id/logoImageDetailsofNote"
+        android:layout_width="370dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo_dark"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#201f25" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar_notedetails"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary" />
+        android:background="?attr/colorPrimary"
+        android:layout_below="@+id/logoImageDetailsofNote"/>
 
     <!--
     <TextView
@@ -34,6 +47,7 @@
         android:gravity="top|left"
         android:textColor="@color/black"
         android:hint="Enter your note content here"
+        android:background="?attr/colorPrimary"
         android:padding="15dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -45,6 +59,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="17dp"
         android:layout_marginBottom="77dp"
+        app:backgroundTint="#95bfc7"
         android:src="@drawable/edit"
         app:maxImageSize="32dp"/>
 

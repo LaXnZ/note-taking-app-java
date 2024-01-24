@@ -17,7 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -164,6 +166,8 @@ public class createnote extends AppCompatActivity {
         EditText mcreatetitleofnote = findViewById(R.id.createtitleofnote);
         Toolbar mtoolbar = findViewById(R.id.toolbarofcreatenote);
         FloatingActionButton msavenote = findViewById(R.id.savenote);
+        ImageView mlogoImageViewNewNote = findViewById(R.id.logoImageViewNewNote);
+        RelativeLayout mrelativenoteofcreatenote = findViewById(R.id.relativenoteofcreatenote);
 
         if (nightMode == Configuration.UI_MODE_NIGHT_YES) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -175,6 +179,8 @@ public class createnote extends AppCompatActivity {
                 mtoolbar.setBackgroundColor(Color.parseColor("#212121"));
                 msavenote.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#495d64")));
                 msavenote.getDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+                mlogoImageViewNewNote.setImageResource(R.drawable.logo_dark);
+                mrelativenoteofcreatenote.setBackgroundColor(Color.parseColor("#201f25"));
             }
         } else {
             bottomNavigationView.setBackgroundColor(Color.parseColor("#f3edf7"));
@@ -182,6 +188,9 @@ public class createnote extends AppCompatActivity {
             msavenote.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#97bdcb")));
             bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.parseColor("#010101")));
             msavenote.getDrawable().setColorFilter(null);
+            mlogoImageViewNewNote.setImageResource(R.drawable.logo_light);
+            mlogoImageViewNewNote.setBackgroundColor(Color.parseColor("#f3edf7"));
+            mrelativenoteofcreatenote.setBackgroundColor(Color.parseColor("#f3edf7"));
         }
     }
 
