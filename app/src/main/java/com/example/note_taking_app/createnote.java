@@ -176,6 +176,8 @@ public class createnote extends AppCompatActivity {
                 bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.parseColor("#e9dff8")));
                 mcreatecontentofnote.setBackgroundColor(Color.parseColor("#212121"));
                 mcreatetitleofnote.setBackgroundColor(Color.parseColor("#212121"));
+                mcreatecontentofnote.setTextColor(getResources().getColor(android.R.color.white));
+                mcreatetitleofnote.setTextColor(getResources().getColor(android.R.color.white));
                 mtoolbar.setBackgroundColor(Color.parseColor("#212121"));
                 msavenote.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#495d64")));
                 msavenote.getDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
