@@ -12,9 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Notetakingapp"
         tools:targetApi="31">
+        <activity
+            android:name=".todo_tasks"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="ocr" />
+
         <activity
             android:name=".scanner"
             android:exported="false" />
