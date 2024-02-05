@@ -88,7 +88,7 @@ public class notesactivity extends AppCompatActivity {
                     //
 
                 } else if (itemId == R.id.navSearch) {
-                    //
+                    startActivity(new Intent(notesactivity.this, todo_tasks.class));
                     
                 } else if (itemId == R.id.navProfile) {
                     //

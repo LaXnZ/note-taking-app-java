@@ -83,7 +83,7 @@ public class editnoteactivity extends AppCompatActivity {
                     startActivity(new Intent(editnoteactivity.this, MainActivity.class));
 
                 } else if (itemId == R.id.navSearch) {
-                    //
+                    startActivity(new Intent(editnoteactivity.this, todo_tasks.class));
 
                 } else if (itemId == R.id.navProfile) {
                     //

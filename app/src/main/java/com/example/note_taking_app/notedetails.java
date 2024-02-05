@@ -86,7 +86,7 @@ public class notedetails extends AppCompatActivity {
                     startActivity(new Intent(notedetails.this, MainActivity.class));
 
                 } else if (itemId == R.id.navSearch) {
-                    //
+                    startActivity(new Intent(notedetails.this, todo_tasks.class));
 
                 } else if (itemId == R.id.navProfile) {
                     //

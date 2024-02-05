@@ -122,7 +122,7 @@ public class scanner extends AppCompatActivity {
                     startActivity(new Intent(scanner.this, MainActivity.class));
 
                 } else if (itemId == R.id.navSearch) {
-                    //
+                    startActivity(new Intent(scanner.this, todo_tasks.class));
 
                 } else if (itemId == R.id.navProfile) {
                     //
