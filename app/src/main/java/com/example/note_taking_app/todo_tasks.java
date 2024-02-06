@@ -1,9 +1,11 @@
 package com.example.note_taking_app;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,13 +25,28 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.example.note_taking_app.Adapter.ToDoAdapter;
+import com.example.note_taking_app.Model.ToDoModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class todo_tasks extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private FloatingActionButton mfloatingActionButton;
+    private FirebaseFirestore firestore;
+    private ToDoAdapter adapter;
+    private List<ToDoModel> mList;
 
     private BottomNavigationView bottomNavigationView;
 
@@ -40,6 +57,8 @@ public class todo_tasks extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.todoRecyclerView);
         mfloatingActionButton = findViewById(R.id.todoFloatingActionButton);
+
+        firestore = FirebaseFirestore.getInstance();
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(todo_tasks.this));
@@ -83,6 +102,31 @@ public class todo_tasks extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AddNewTask.newInstance().show(getSupportFragmentManager(),AddNewTask.TAG);
+            }
+        });
+
+        mList = new ArrayList<>();
+        adapter = new ToDoAdapter(todo_tasks.this , mList);
+
+
+        showData();
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void showData(){
+        firestore.collection("task").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                for (DocumentChange documentChange : value.getDocumentChanges()){
+                    if(documentChange.getType()==DocumentChange.Type.ADDED){
+                        String id =documentChange.getDocument().getId();
+                        ToDoModel toDoModel = documentChange.getDocument().toObject(ToDoModel.class).withId(id);
+
+                        mList.add(toDoModel);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+                Collections.reverse(mList);
             }
         });
     }
