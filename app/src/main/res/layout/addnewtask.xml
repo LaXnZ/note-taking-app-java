@@ -12,17 +12,29 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:backgroundTint="@color/black"
+        app:layout_constraintEnd_toStartOf="@id/speech_mic_btn"
         android:hint="Add your task here..."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <Button
+        android:id="@+id/save_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_edittext" />
 
     <TextView
         android:id="@+id/set_due_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
         android:drawableRight="@drawable/baseline_calendar_month_24"
         android:drawablePadding="8dp"
         android:text="Set Due Date"
@@ -31,14 +43,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/task_edittext" />
 
-    <Button
-        android:id="@+id/save_task"
+    <ImageView
+        android:id="@+id/speech_mic_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Save"
+        android:src="@drawable/mic"
+        app:layout_constraintBottom_toBottomOf="@+id/task_edittext"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/task_edittext" />
+        app:layout_constraintTop_toTopOf="@+id/task_edittext"
+        app:layout_constraintVertical_bias="0.38" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
