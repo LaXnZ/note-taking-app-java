@@ -50,6 +50,6 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.1'
     implementation 'androidx.paging:paging-runtime:3.2.1'
     implementation 'com.github.dhaval2404:imagepicker:2.1'
-    // To recognize Latin script
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4'
     implementation 'com.google.android.gms:play-services-mlkit-text-recognition:19.0.0'
 }
