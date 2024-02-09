@@ -86,7 +86,7 @@ public class editnoteactivity extends AppCompatActivity {
                     startActivity(new Intent(editnoteactivity.this, todo_tasks.class));
 
                 } else if (itemId == R.id.navProfile) {
-                    //
+                    startActivity(new Intent(editnoteactivity.this, profile.class));
 
                 } else if (itemId == R.id.navScanner) {
                     startActivity(new Intent(editnoteactivity.this, scanner.class));

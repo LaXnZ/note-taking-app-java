@@ -89,7 +89,7 @@ public class notedetails extends AppCompatActivity {
                     startActivity(new Intent(notedetails.this, todo_tasks.class));
 
                 } else if (itemId == R.id.navProfile) {
-                    //
+                    startActivity(new Intent(notedetails.this, profile.class));
 
                 } else if (itemId == R.id.navScanner) {
                     startActivity(new Intent(notedetails.this, scanner.class));

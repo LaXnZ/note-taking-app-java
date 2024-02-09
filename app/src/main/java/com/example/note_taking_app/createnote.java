@@ -98,7 +98,7 @@ public class createnote extends AppCompatActivity {
                     startActivity(new Intent(createnote.this, todo_tasks.class));
 
                 } else if (itemId == R.id.navProfile) {
-                    //
+                    startActivity(new Intent(createnote.this, profile.class));
 
                 } else if (itemId == R.id.navScanner) {
                     startActivity(new Intent(createnote.this, scanner.class));

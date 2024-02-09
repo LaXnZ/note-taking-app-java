@@ -93,8 +93,7 @@ public class MainActivity extends AppCompatActivity {
         mgotoforgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(MainActivity.this,forgotpassword.class));
-                startActivity(new Intent(MainActivity.this, scanner.class));
+                startActivity(new Intent(MainActivity.this,forgotpassword.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });

@@ -125,7 +125,7 @@ public class scanner extends AppCompatActivity {
                     startActivity(new Intent(scanner.this, todo_tasks.class));
 
                 } else if (itemId == R.id.navProfile) {
-                    //
+                    startActivity(new Intent(scanner.this, profile.class));
 
                 } else if (itemId == R.id.navScanner) {
                     //

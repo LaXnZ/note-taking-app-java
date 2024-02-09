@@ -88,8 +88,8 @@ public class todo_tasks extends AppCompatActivity implements OnDialogCloseListne
                     startActivity(new Intent(todo_tasks.this, createnote.class));
 
                 } else if (itemId == R.id.navProfile) {
-                    //
 
+                    startActivity(new Intent(todo_tasks.this, profile.class));
                 } else if (itemId == R.id.navScanner) {
                     startActivity(new Intent(todo_tasks.this, scanner.class));
 

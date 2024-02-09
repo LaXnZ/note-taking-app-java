@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Notetakingapp"
         tools:targetApi="31">
         <activity
+            android:name=".profile"
+            android:exported="false" />
+        <activity
             android:name=".todo_tasks"
             android:exported="false" />
 
