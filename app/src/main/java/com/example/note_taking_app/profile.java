@@ -31,9 +31,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -44,6 +46,7 @@ public class profile extends AppCompatActivity {
     private EditText emailEditText;
     private Button saveButton;
 
+    private TextView notesCountTextView;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
@@ -94,6 +97,10 @@ public class profile extends AppCompatActivity {
         } else {
             // Handle the case where user is null
         }
+
+        String userId = mAuth.getCurrentUser().getUid();
+        fetchNotesCount(userId);
+        fetchAccountCreationDate();
 
         bottomNavigationView = findViewById(R.id.bottomNavView);
         bottomNavigationView.getMenu().findItem(R.id.navProfile).setChecked(true);
@@ -172,39 +179,58 @@ public class profile extends AppCompatActivity {
         });
     }
 
-    private void fetchUserData() {
-        // Get the current user's ID
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    private void fetchAccountCreationDate() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Get the timestamp of when the user account was created
+            long creationTimestamp = user.getMetadata().getCreationTimestamp();
 
+            // Calculate the difference between the current time and the account creation time in days
+            long currentTime = System.currentTimeMillis();
+            long elapsedTimeMillis = currentTime - creationTimestamp;
+            long elapsedDays = elapsedTimeMillis / (1000 * 60 * 60 * 24); // Convert milliseconds to days
+
+            // Display the number of days since the account was created
+            TextView daysSinceCreationTextView = findViewById(R.id.daysSinceCreationTextView);
+            if (daysSinceCreationTextView != null) {
+                daysSinceCreationTextView.setText("Days since account creation: " + elapsedDays);
+            } else {
+                Log.e("TextView", "daysSinceCreationTextView is null");
+            }
+        } else {
+            // Handle the case where user is null
+        }
+    }
+
+    private void fetchNotesCount(String userId) {
         // Access Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Retrieve data from Firestore
-        db.collection("users").document(userId)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String name = document.getString("name");
-                                String email = document.getString("email");
+        notesCountTextView = findViewById(R.id.notesCountTextView);
+        String firebaseUser = mAuth.getCurrentUser().getUid();
+        CollectionReference notesCollectionRef = db.collection("notes").document(firebaseUser).collection("myNotes");
 
-                                Log.d("FirestoreData", "Name: " + name + ", Email: " + email);
+        // Query the notes collection
+        notesCollectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    // Get the number of documents (notes) in the collection
+                    int notesCount = task.getResult().size();
 
-
-                                // Set name and email to TextViews
-                                nameTextView.setText(name);
-                                emailTextView.setText(email);
-                            }
-                        } else {
-                            // Handle errors
-                        }
+                    // Update the TextView with the notes count
+                    if (notesCountTextView != null) {
+                        notesCountTextView.setText("Number of notes created: " + notesCount);
+                    } else {
+                        Log.e("TextView", "TextView is null");
                     }
-                });
+                } else {
+                    // Handle errors
+                    Log.e("Firestore", "Error getting notes count: " + task.getException().getMessage());
+                }
+            }
+        });
     }
-
 
     @SuppressLint("ResourceAsColor")
     private void updateBackgroundBasedOnTheme(Configuration configuration) {
@@ -218,7 +244,6 @@ public class profile extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 // Apply dark theme styles for EditText and Toolbar
 
-                profileImage.setColorFilter(ContextCompat.getColor(this, android.R.color.white), PorterDuff.Mode.SRC_IN);
                 bottomNavigationView.setBackgroundColor(Color.parseColor("#201f25"));
                 bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.parseColor("#c9c4cf")));
                 bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.parseColor("#e9dff8")));
@@ -229,7 +254,6 @@ public class profile extends AppCompatActivity {
             bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.parseColor("#48454e")));
             mlogoImageViewProfile.setImageResource(R.drawable.logo_light);
             mlogoImageViewProfile.setBackgroundColor(Color.parseColor("#f3edf7"));
-            profileImage.clearColorFilter();
         }
     }
 

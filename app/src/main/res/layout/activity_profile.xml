@@ -30,19 +30,21 @@
         android:layout_height="130dp"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="12dp"
-        android:src="@drawable/profile"
+        android:src="@drawable/img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar_profileactivity" />
 
+
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="77dp"
+        android:layout_height="33dp"
         android:layout_marginStart="160dp"
         android:layout_marginTop="4dp"
         android:background="@android:color/darker_gray"
         android:text="Logout"
+        android:textSize="8dp"
         app:layout_constraintStart_toStartOf="@+id/profile_image"
         app:layout_constraintTop_toTopOf="@+id/profile_image" />
 
@@ -78,6 +80,49 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditTextProfile" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/daysSinceCreationCardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/notesCountCardView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveButton">
+
+        <TextView
+            android:id="@+id/daysSinceCreationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Days since account creation: 100"
+            android:textSize="16sp" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- CardView to display the number of notes the user has created -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/notesCountCardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/daysSinceCreationCardView"
+        app:layout_constraintTop_toBottomOf="@+id/saveButton">
+
+        <TextView
+            android:id="@+id/notesCountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Number of notes created: 50"
+            android:textSize="16sp" />
+    </androidx.cardview.widget.CardView>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
