@@ -1,6 +1,6 @@
 # NoteXpert
 
-![NoteXpert Logo](assets/images/login_logo_dark.png)
+![NoteXpert Logo](https://github.com/LaXnZ/notexpert-java/blob/main/app/src/main/res/drawable/logo_dark.png) 
 
 NoteXpert is a mobile app that simplifies note-taking, document scanning, and text extraction from images. With NoteXpert, you can effortlessly create, save, and organize your notes, add images to them, and access your notes from anywhere. Plus, it offers a user-friendly dark mode for a comfortable viewing experience.
 
